@@ -28,7 +28,7 @@ public class Ball : MonoBehaviour {
 			if(Input.GetMouseButtonDown(0)){
 				hasStarted = true;
 				float randomX = Random.Range(-2.5f, 2.5f);//randomize direction ball is fired
-				this.rigidbody2D.velocity = new Vector2(randomX, 10f);
+				this.GetComponent<Rigidbody2D>().velocity = new Vector2(randomX, 10f);
 			}
 		}
 	}
@@ -45,90 +45,90 @@ public class Ball : MonoBehaviour {
 			DestroyObject(gameObject);
 		}
 		
-		Vector2 wallBounce = rigidbody2D.velocity;
+		Vector2 wallBounce = GetComponent<Rigidbody2D>().velocity;
 		
-		if(col.gameObject.name == "Left Wall" && rigidbody2D.velocity.x < 2f){
+		if(col.gameObject.name == "Left Wall" && GetComponent<Rigidbody2D>().velocity.x < 2f){
 			wallBounce.x += 1f;
-			rigidbody2D.velocity = wallBounce;
-		} else if (col.gameObject.name == "Right Wall" && rigidbody2D.velocity.x < 2f){
+			GetComponent<Rigidbody2D>().velocity = wallBounce;
+		} else if (col.gameObject.name == "Right Wall" && GetComponent<Rigidbody2D>().velocity.x < 2f){
 			wallBounce.x -= 1f;
-			rigidbody2D.velocity = wallBounce;
+			GetComponent<Rigidbody2D>().velocity = wallBounce;
 		}		
 		
 		float tweakX;
 		float tweakY;
 		
 		if(levelManager.GetDifficulty() == "easy"){
-			if(rigidbody2D.velocity.x > 10f){
+			if(GetComponent<Rigidbody2D>().velocity.x > 10f){
 				tweakX = -1f;
-			} else if(rigidbody2D.velocity.x < -10f){
+			} else if(GetComponent<Rigidbody2D>().velocity.x < -10f){
 				tweakX = 1f;
-			} else if(rigidbody2D.velocity.x > 7f || rigidbody2D.velocity.x < -7f){
+			} else if(GetComponent<Rigidbody2D>().velocity.x > 7f || GetComponent<Rigidbody2D>().velocity.x < -7f){
 				tweakX = 0f;
-			} else if(rigidbody2D.velocity.x > 4f){
+			} else if(GetComponent<Rigidbody2D>().velocity.x > 4f){
 				tweakX = Random.Range (0f, 0.01f);
-			} else if (rigidbody2D.velocity.x < -4f){
+			} else if (GetComponent<Rigidbody2D>().velocity.x < -4f){
 				tweakX = Random.Range (0f, -0.01f);
-			} else if(rigidbody2D.velocity.x > 0){
+			} else if(GetComponent<Rigidbody2D>().velocity.x > 0){
 				tweakX = Random.Range (0f, 0.05f);
 			}else{
 				tweakX = Random.Range (0f, -0.05f);
 			}
-			if(rigidbody2D.velocity.y > 10f){
+			if(GetComponent<Rigidbody2D>().velocity.y > 10f){
 				tweakY = -0.4f;
-			} else if(rigidbody2D.velocity.y < -10f){
+			} else if(GetComponent<Rigidbody2D>().velocity.y < -10f){
 				tweakY = 0.4f;
-			} else if(rigidbody2D.velocity.y > 7f || rigidbody2D.velocity.y < -7f){
+			} else if(GetComponent<Rigidbody2D>().velocity.y > 7f || GetComponent<Rigidbody2D>().velocity.y < -7f){
 				tweakY = 0f;
-			} else if(rigidbody2D.velocity.y > 4f){
+			} else if(GetComponent<Rigidbody2D>().velocity.y > 4f){
 				tweakY = Random.Range (0f, 0.01f);
-			} else if (rigidbody2D.velocity.y < -4f){
+			} else if (GetComponent<Rigidbody2D>().velocity.y < -4f){
 				tweakY = Random.Range (0f, -0.01f);
-			} else if(rigidbody2D.velocity.y > 0){
+			} else if(GetComponent<Rigidbody2D>().velocity.y > 0){
 				tweakY = Random.Range (0f, 0.02f);
 			}else{
 				tweakY = Random.Range (0f, -0.02f);
 			}
 		}
 		else if(levelManager.GetDifficulty() == "normal"){
-			if(rigidbody2D.velocity.x > 17f){
+			if(GetComponent<Rigidbody2D>().velocity.x > 17f){
 				tweakX = -0.4f;
-			} else if(rigidbody2D.velocity.x < -17f){
+			} else if(GetComponent<Rigidbody2D>().velocity.x < -17f){
 				tweakX = 0.4f;
-			} else if(rigidbody2D.velocity.x > 15f || rigidbody2D.velocity.x < -15f){
+			} else if(GetComponent<Rigidbody2D>().velocity.x > 15f || GetComponent<Rigidbody2D>().velocity.x < -15f){
 				tweakX = 0f;
-			} else if(rigidbody2D.velocity.x > 10f){
+			} else if(GetComponent<Rigidbody2D>().velocity.x > 10f){
 				tweakX = Random.Range (0f, 0.01f);
-			} else if (rigidbody2D.velocity.x < -10f){
+			} else if (GetComponent<Rigidbody2D>().velocity.x < -10f){
 				tweakX = Random.Range (0f, -0.01f);
-			} else if(rigidbody2D.velocity.x > 0){
+			} else if(GetComponent<Rigidbody2D>().velocity.x > 0){
 				tweakX = Random.Range (0f, 0.05f);
 			}else{
 				tweakX = Random.Range (0f, -0.05f);
 			}
-			if(rigidbody2D.velocity.y > 17f){
+			if(GetComponent<Rigidbody2D>().velocity.y > 17f){
 				tweakY = -0.4f;
-			} else if(rigidbody2D.velocity.y < -17f){
+			} else if(GetComponent<Rigidbody2D>().velocity.y < -17f){
 				tweakY = 0.4f;
-			} else if(rigidbody2D.velocity.y > 15f || rigidbody2D.velocity.y < -15f){
+			} else if(GetComponent<Rigidbody2D>().velocity.y > 15f || GetComponent<Rigidbody2D>().velocity.y < -15f){
 				tweakY = 0f;
-			} else if(rigidbody2D.velocity.y > 10f){
+			} else if(GetComponent<Rigidbody2D>().velocity.y > 10f){
 				tweakY = Random.Range (0f, 0.01f);
-			} else if (rigidbody2D.velocity.y < -10f){
+			} else if (GetComponent<Rigidbody2D>().velocity.y < -10f){
 				tweakY = Random.Range (0f, -0.01f);
-			} else if(rigidbody2D.velocity.y > 0){
+			} else if(GetComponent<Rigidbody2D>().velocity.y > 0){
 				tweakY = Random.Range (0f, 0.05f);
 			}else{
 				tweakY = Random.Range (0f, -0.05f);
 			}
 		}
 		else{//hard mode
-			if(rigidbody2D.velocity.x > 0){
+			if(GetComponent<Rigidbody2D>().velocity.x > 0){
 				tweakX = Random.Range (0f, 0.1f);
 			}else{
 				tweakX = Random.Range (0f, -0.1f);
 			}
-			if(rigidbody2D.velocity.y > 0){
+			if(GetComponent<Rigidbody2D>().velocity.y > 0){
 				tweakY = Random.Range (0f, 1f);
 			}else{
 				tweakY = Random.Range (0f, -1f);
@@ -138,8 +138,8 @@ public class Ball : MonoBehaviour {
 		Vector2 tweak = new Vector2(tweakX, tweakY);
 		
 		if(hasStarted){
-			audio.Play ();
-			rigidbody2D.velocity += tweak;
+			GetComponent<AudioSource>().Play ();
+			GetComponent<Rigidbody2D>().velocity += tweak;
 		}
 	}
 }
